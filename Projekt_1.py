@@ -29,13 +29,14 @@ else:
     exit()
 
 # print out samples of texts for user to select
-for i,text in enumerate(TEXTS):
+for i, text in enumerate(TEXTS):
     print(f"Text nr. {i}: {TEXTS[i][:20]} ...")
 
 # getting the text selection from user
 text_selection = input("Choose one of the texts (by it's number) to be processed: ")
 
 # validate the user text selection
+text_selection_index = 0
 if text_selection.isnumeric() and 0 <= int(text_selection) < len(TEXTS):
     text_selection_index = int(text_selection)
     print(f"Selected text: nr. {text_selection_index}: {TEXTS[text_selection_index][:20]} ...")
