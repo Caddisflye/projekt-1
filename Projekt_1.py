@@ -1,7 +1,7 @@
 """
 projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Jiri Steif
-email: jiristeif@seznam.cz
+email: jiristeif (zavinac) seznam.cz
 discord: Caddi#3130
 """
 
