@@ -47,4 +47,9 @@ else:
 
 text_split = TEXTS[text_selection_index].split()
 
-print(text_split)
+text_split_cleared = []
+
+for word in text_split:
+    text_split_cleared.append(word.strip(".,:;?!\n").lower())
+
+print(text_split_cleared)
