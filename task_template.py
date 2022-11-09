@@ -1,8 +1,7 @@
 '''
 author =
 '''
-TEXTS = ['''
-Situated about 10 miles west of Kemmerer,
+TEXTS = ['''Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
 topographic feature that rises sharply
 some 1000 feet above Twin Creek Valley
