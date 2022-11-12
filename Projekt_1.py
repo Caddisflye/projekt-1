@@ -117,6 +117,6 @@ tisk_oddelovace(oddelovac, sirka_radku)
 
 sorted_keys = sorted(list(lenghts_of_words.keys()))
 
-# print out the bar chart of occurances
+# print out the bar charts of occurances
 for key in sorted_keys:
     print(f"{key: >3}|{lenghts_of_words.get(key)*'*': <20} |{lenghts_of_words.get(key)}")
