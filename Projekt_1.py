@@ -56,7 +56,6 @@ tisk_oddelovace(oddelovac, sirka_radku)
 text_selection_index = 0
 if text_selection.isnumeric() and 0 <= int(text_selection) < len(TEXTS):
     text_selection_index = int(text_selection)
-    # print(f"Selected text: nr. {text_selection_index}: {TEXTS[text_selection_index][:20]} ...")
 else:
     # invalid input -> inform user and exit
     print("Invalid text choice. Terminating..")
@@ -79,16 +78,20 @@ sum_of_all_numbers = 0
 lenghts_of_words = dict()
 
 for word in text_split_cleared:
-    if 64 < ord(word[0]) < 91:  # check if first letter is a capital letter
+    # check if first letter is a capital letter
+    if 64 < ord(word[0]) < 91:
         number_of_words_with_titlecase += 1
 
-    if word.isupper() and word.isalpha():  # check if whole word is in uppercase
+    # check if whole word is in uppercase
+    if word.isupper() and word.isalpha():
         number_of_words_with_upper += 1
 
-    if word.islower() and word.isalpha():  # check if whole word is in lowercase
+    # check if whole word is in lowercase
+    if word.islower() and word.isalpha():
         number_of_words_with_lower += 1
 
-    if word.isnumeric():  # check if word is numeric and add it to the total if it is
+    # check if word is numeric and add it to the total if it is
+    if word.isnumeric():
         number_of_numeric_words += 1
         sum_of_all_numbers += int(word)
 
@@ -114,5 +117,6 @@ tisk_oddelovace(oddelovac, sirka_radku)
 
 sorted_keys = sorted(list(lenghts_of_words.keys()))
 
+# print out the bar chart of occurances
 for key in sorted_keys:
     print(f"{key: >3}|{lenghts_of_words.get(key)*'*': <20} |{lenghts_of_words.get(key)}")
