@@ -7,6 +7,13 @@ discord: Caddi#3130
 
 from task_template import TEXTS
 
+
+def tisk_oddelovace(sirka, znak):
+    """print out a separator - made as function
+    in case of future upgrade to something more fancy"""
+    print(sirka * znak)
+
+
 # defining users and their passwords
 users = {
     "bob": "123",
@@ -15,6 +22,9 @@ users = {
     "liz": "pass123"
 }
 
+oddelovac = "-"
+sirka_radku = 40
+
 # getting the user's username and password
 user = input("Enter your username: ").lower()
 password = input("Enter your password: ")
@@ -22,27 +32,34 @@ password = input("Enter your password: ")
 # checking if entered username is defined in users
 # checking if entered password is a valid value for the user
 if user in users.keys() and password == users.get(user):
+    tisk_oddelovace(oddelovac, sirka_radku)
     print(f"Login successful, welcome {user}!")
 else:
     # if not -> inform and end
-    print("Unknown user")
+    print("Unknown user. Terminating..")
     exit()
+
+tisk_oddelovace(oddelovac, sirka_radku)
 
 # print out samples of texts for user to select
 for i, text in enumerate(TEXTS):
     print(f"Text nr. {i}: {TEXTS[i][:20]} ...")
 
+tisk_oddelovace(oddelovac, sirka_radku)
+
 # getting the text selection from user
-text_selection = input("Choose one of the texts (by it's number) to be processed: ")
+text_selection = input("Enter a number btw. 0 and 2 to select: ")
+
+tisk_oddelovace(oddelovac, sirka_radku)
 
 # validate the user text selection
 text_selection_index = 0
 if text_selection.isnumeric() and 0 <= int(text_selection) < len(TEXTS):
     text_selection_index = int(text_selection)
-    print(f"Selected text: nr. {text_selection_index}: {TEXTS[text_selection_index][:20]} ...")
+    # print(f"Selected text: nr. {text_selection_index}: {TEXTS[text_selection_index][:20]} ...")
 else:
     # invalid input -> inform user and exit
-    print("Invalid text choice")
+    print("Invalid text choice. Terminating..")
     exit()
 
 # split the chosen text into a list of words
@@ -75,8 +92,27 @@ for word in text_split_cleared:
         number_of_numeric_words += 1
         sum_of_all_numbers += int(word)
 
+    # put the length of word into the dictionary of lengths and amounts
+    # if the length is already a key -> increment by 1
     if lenghts_of_words.get(len(word), 0) == 0:
         lenghts_of_words[len(word)] = 1
     else:
         lenghts_of_words[len(word)] += 1
 
+# print out all the values
+print(f"There are {number_of_words} words in the selected text.")
+print(f"There are {number_of_words_with_titlecase} titlecase words.")
+print(f"There are {number_of_words_with_upper} uppercase words.")
+print(f"There are {number_of_words_with_lower} lowercase words.")
+print(f"There are {number_of_numeric_words} numeric strings.")
+print(f"The sum of all the numbers is {sum_of_all_numbers}")
+
+tisk_oddelovace(oddelovac, sirka_radku)
+
+print(f"LEN|{'OCCURENCES': ^20} |NR.")
+tisk_oddelovace(oddelovac, sirka_radku)
+
+sorted_keys = sorted(list(lenghts_of_words.keys()))
+
+for key in sorted_keys:
+    print(f"{key: >3}|{lenghts_of_words.get(key)*'*': <20} |{lenghts_of_words.get(key)}")
