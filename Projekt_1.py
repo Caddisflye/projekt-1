@@ -45,11 +45,38 @@ else:
     print("Invalid text choice")
     exit()
 
+# split the chosen text into a list of words
 text_split = TEXTS[text_selection_index].split()
 
+# "clean" the words -> remove unwanted characters
 text_split_cleared = []
-
 for word in text_split:
-    text_split_cleared.append(word.strip(".,:;?!\n").lower())
+    text_split_cleared.append(word.strip(".,:;?!\n"))
 
-print(text_split_cleared)
+number_of_words = len(text_split_cleared)  # calculate the number of words
+number_of_words_with_titlecase = 0
+number_of_words_with_upper = 0
+number_of_words_with_lower = 0
+number_of_numeric_words = 0
+sum_of_all_numbers = 0
+lenghts_of_words = dict()
+
+for word in text_split_cleared:
+    if 64 < ord(word[0]) < 91:  # check if first letter is a capital letter
+        number_of_words_with_titlecase += 1
+
+    if word.isupper() and word.isalpha():  # check if whole word is in uppercase
+        number_of_words_with_upper += 1
+
+    if word.islower() and word.isalpha():  # check if whole word is in lowercase
+        number_of_words_with_lower += 1
+
+    if word.isnumeric():  # check if word is numeric and add it to the total if it is
+        number_of_numeric_words += 1
+        sum_of_all_numbers += int(word)
+
+    if lenghts_of_words.get(len(word), 0) == 0:
+        lenghts_of_words[len(word)] = 1
+    else:
+        lenghts_of_words[len(word)] += 1
+
